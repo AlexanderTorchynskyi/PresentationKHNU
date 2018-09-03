@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="person/head :: head">
+</head>
+<body>
+
+<nav th:replace="person/header :: nav"></nav>
+
+<div id="admin-section">
+    <div class="admin-inner">
+        <div class="container center_div">
+
+            <form class="admin-form" th:action="@{/person}" th:object="${newPerson}"
+                  th:method="post" method="post">
+
+                <div class="form-group">
+                    <label for="newPersonName">First Name</label>
+                    <input type="text" class="form-control" th:field="*{firstName}" id="newPersonName" required
+                           min="0"
+                           placeholder="First Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" th:field="*{lastName}" id="lastName" required
+                           min="0" step="0.01"
+                           placeholder="Last Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">email</label>
+                    <input type="email" class="form-control" th:field="*{email}" id="email"
+                           required min="0" step="0.01"
+                           placeholder="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="question">Will I Go to DevSmile</label>
+                    <select class="form-control pagination" style="height: 30px" th:field="*{willIGoToDevSmile}"
+                            id="question">
+                        <option
+                                th:value="${false}" th:text="No">
+                        </option>
+
+                        <option
+                                th:value="${true}" th:text="Yes">
+                        </option>
+
+
+                    </select>
+                </div>
+
+                <a class="btn btn-dark" th:href="@{/person}">Cancel</a>
+                <button type="submit" class="btn btn-primary">Send</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="person/footer :: footer"></footer>
+</body>
+</html>

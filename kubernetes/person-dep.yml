@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+ name: person
+ labels:
+   run:  person
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+      run:  person
+ template:
+   metadata:
+     labels:
+        run:  person
+   spec:
+     containers:
+     - name: person
+       image: gcr.io/test-mongo-bitnami/person:v1
+       ports:
+       - containerPort: 8080
